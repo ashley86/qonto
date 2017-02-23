@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: #3d464f;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.btn {
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #99c5ce;
+    padding: 0.5rem;
+    color: #99c5ce;
+}
+
+a.btn:hover {
+    color: #ffffff;
+    border-color: #fff;
+    background-color: #99c5ce;
+    text-decoration: none;
+}
+
+.no-padd {
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #fcfcfc;
+    font: 1.6rem / 1.5 Helvetica, sans-serif;
+}
+
+.wrapper {
+}
+
+.wrapper > *,
+.wrapper main > * {
+    float: left;
+    min-height: 100vh;
+    /*overflow: hidden;*/
+}
+
+header {
+    background-color: #3e4750;
+    width: 16%;
+}
+
+header .top {
+    height: 8rem;
+    background-color: #363d45;
+}
+
+header .top h1 {
+    margin: 0;
+    text-indent: 3rem;
+}
+
+header .top h1 a {
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 8rem;
+}
+
+header nav {
+
+}
+
+header nav ul {
+    list-style: none;
+    padding: 3rem 0 0 0;
+    width: 100%;
+}
+
+header nav ul li {
+    padding-left: 3rem;
+    line-height: 3rem;
+}
+
+header nav ul li a {
+    color: #8f97a2;
+}
+
+header nav ul li.btn {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+header nav ul li.divider {
+    margin: 3rem 0;
+    border-top: 1px solid #8f97a2;
+}
+
+
+
+main {
+    width: 84%;
+}
+
+main > * {
+    position: relative;
+    padding: 14rem 1.5rem;
+}
+
+main > *:before {
+    position: absolute;
+    content:'';
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    background-color: #ebaf3d;
+}
+
+main #transactions {
+    width: 80%;
+}
+
+main #transactions table {
+    width: 80%;
+    margin: auto;
+}
+
+main #transactions table td {
+    text-align: center;
+}
+
+main #details {
+    width: 20%;
+    background-color: #fff;
+}
+
+main #details:before {
+    background-color: #f6f6f6;
+}
+
+.fa-caret-up {
+    color:#92c7d7;
+}
+
+.fa-caret-down {
+    color:#ec595f;
+}

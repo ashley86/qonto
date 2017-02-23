@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Finpal</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+
+    </head>
+    <body ng-app="transactions">
+
+        <div class="wrapper" ng-controller="TransactionsCtrl">
+
+            <header>
+
+                <div class="top">
+
+                    <h1><a href="#">{{appName}}</a></h1>
+
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="/">Overview</a></li>
+                        <li><a href="/transactions">Transactions ({{ transactions.length }})</a></li>
+
+                        <li class="divider" role="separator"></li>
+
+                        <li><a href="/transactions/transfers">Transfers ({{ totalTransfers }})</a></li>
+                        <li><a href="/transactions/invoices">Invoices ({{ totalInvoices }})</a></li>
+
+                        <li class="divider" role="separator"></li>
+
+                        <li><a href="#">Manage cards</a></li>
+                        <li><a href="#">Manage accounts</a></li>
+
+                        <li class="divider" role="separator"></li>
+
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Settings</a></li>
+
+                        <li class="no-padd btn"><a href="#" class="btn">Upgrade account</a></li>
+                    </ul>
+                </nav>
+
+            </header>
+
+            <main>
+
+                <section id="transactions">
+
+                    <table cellpadding="0" cellspacing="0" border="0">
+
+                        <tr>
+                            <th>
+                                <a href="#" ng-click="sortBy('created_at')">DD-MM-YYYY</a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortBy('counterparty_name')">CounterParty Name</a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortBy('operation_type')">Payment type</a>
+                            </th>
+                            <th>
+                                <a href="#" ng-click="sortBy('amount')">Amount</a>
+                            </th>
+                            <th>
+                                <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
+                            </th>
+                        </tr>
+
+                        <tr ng-repeat="transaction in transactions | orderBy:propertyName:reverse" ng-click="showDetailsTransactions($index)">
+                            <td ng-model="date">{{ transaction.created_at | date:'dd-MM-yyyy' }}</td>
+                            <td>{{ transaction.counterparty_name }}</td>
+                            <td>{{ transaction.operation_type }}</td>
+                            <td>
+                                {{ transaction.amount }} {{ transaction.currency }}
+                                <i ng-if="transaction.credit" class="fa fa-caret-up" aria-hidden="true"></i>
+                                <i ng-if="transaction.debit" class="fa fa-caret-down" aria-hidden="true"></i>
+
+                            </td>
+                            <td><i class="fa fa-paperclip" aria-hidden="true"></i> {{ transaction.attachements.length }}</td>
+                        </tr>
+
+                    </table>
+
+                </section>
+
+                <section id="details">
+
+                    <span ng-if="!transactionSelected">Click on one or several transactions to see details</span>
+
+                    <ul ng-if="transactionSelected" >
+                        <li>{{ transactionSelected.created_at | date:'dd-MM-yyyy' }}</li>
+                        <li>{{ transactionSelected.counterparty_name }}</li>
+                        <li>{{ transactionSelected.operation_type }}</li>
+                        <li>{{ transactionSelected.amount }} {{ transaction.currency }}</li>
+                        <li><img src="{{ transactionSelected.attachements[0].url }}" /></li>
+                        <li>{{ transactionSelected.credit }}</li>
+                    </ul>
+
+                </section>
+            </main>
+
+        </div>
+
+        <!-- Using AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+
+    </body>
+</html>
